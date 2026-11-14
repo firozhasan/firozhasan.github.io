@@ -1,1 +1,298 @@
-<!DOCTYPE html><title>Coming soon</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your Name — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f4f6fb; --card:#ffffff; --text:#1f2430; --muted:#6b7385; --accent:#4660a9; --accent-soft:#e8edfa;
+  --border:#d9deea; --shadow:0 2px 10px rgba(30,40,80,.10); --nav:#ffffffee;
+}
+[data-theme="dark"]{
+  --bg:#12151d; --card:#1b2030; --text:#e7eaf3; --muted:#9aa3b8; --accent:#8fa8ff; --accent-soft:#252d47;
+  --border:#2c3450; --shadow:0 2px 12px rgba(0,0,0,.45); --nav:#171b28ee;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Poppins',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;font-size:15px;transition:background .3s,color .3s}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
+
+/* NAV */
+header{position:sticky;top:0;z-index:20;background:var(--nav);backdrop-filter:blur(8px);box-shadow:var(--shadow)}
+.bar{max-width:1200px;margin:auto;display:flex;align-items:center;gap:24px;padding:10px 24px}
+.logo{font-family:'Dancing Script',cursive;font-size:28px;white-space:nowrap}
+#theme{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-size:18px;transition:transform .4s}
+#theme:hover{transform:rotate(40deg)}
+nav{flex:1;display:flex;justify-content:center;gap:6px;overflow-x:auto;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav button{padding:6px 14px;font-size:13.5px;font-weight:500;border-bottom:2px solid transparent;white-space:nowrap;color:var(--text)}
+nav button:hover{color:var(--accent)}
+nav button.active{color:var(--accent);border-color:var(--accent)}
+.social{display:flex;gap:14px}
+.social a{width:22px;height:22px;display:block}
+.social svg{width:100%;height:100%;fill:currentColor}
+.notice{text-align:center;font-size:12px;color:var(--muted);padding:6px}
+
+/* LAYOUT */
+main{max-width:1200px;margin:auto;padding:36px 24px 60px}
+section{display:none;animation:fade .35s ease}
+section.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+h2.title{font-size:22px;font-weight:500;color:var(--accent);margin-bottom:22px;position:relative;padding-bottom:8px}
+h2.title::after{content:"";position:absolute;left:0;bottom:0;width:48px;height:2px;background:var(--accent)}
+h3.sub{font-size:17px;font-weight:600;margin-bottom:10px}
+
+/* ABOUT */
+.about{display:grid;grid-template-columns:300px 1fr;gap:48px;align-items:start}
+.profile{text-align:center}
+.avatar{width:220px;height:220px;border-radius:50%;border:4px solid var(--accent);margin:0 auto 18px;overflow:hidden;background:var(--accent-soft);display:grid;place-items:center}
+.avatar svg{width:100%;height:100%}
+.profile h1{font-size:22px;font-weight:600}
+.profile .meta{font-size:13px;color:var(--muted)}
+.profile .meta.i{font-style:italic;color:var(--text)}
+.btn{display:inline-block;margin-top:14px;padding:8px 22px;border-radius:6px;background:var(--accent);color:#fff;font-size:14px;transition:transform .2s,opacity .2s}
+[data-theme="dark"] .btn{color:#10142a}
+.btn:hover{transform:translateY(-2px);opacity:.92}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin:26px 0}
+ul.dots{list-style:none}
+ul.dots li{padding-left:16px;position:relative;margin-bottom:8px}
+ul.dots li::before{content:"•";position:absolute;left:0;color:var(--accent)}
+.sm{color:var(--muted);font-size:13.5px}
+.profiles{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:10px}
+.profiles a{border:1.5px solid var(--accent);border-radius:8px;padding:12px;text-align:center;color:var(--accent);font-size:14px;transition:background .2s,transform .2s}
+.profiles a:hover{background:var(--accent-soft);transform:translateY(-2px)}
+
+/* CARDS */
+.card{background:var(--card);border-radius:8px;box-shadow:var(--shadow);padding:20px 24px;margin-bottom:22px;transition:transform .2s}
+.card:hover{transform:translateY(-2px)}
+.exp{display:flex;gap:18px}
+.exp .logo-ph{flex:0 0 44px;height:44px;border-radius:50%;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;font-weight:600}
+.exp h3{font-size:16px;font-weight:600}
+.pill{display:inline-block;font-size:11.5px;background:var(--accent-soft);color:var(--accent);padding:1px 10px;border-radius:10px;margin:6px 0}
+.tag{display:inline-block;font-size:12px;border:1px solid var(--border);background:var(--accent-soft);color:var(--accent);padding:2px 10px;border-radius:5px;margin:0 6px 6px 0}
+
+.pub{display:flex;gap:22px;align-items:flex-start}
+.pub .year{flex:0 0 90px;text-align:center}
+.pub .year b{display:block;background:var(--accent-soft);color:var(--accent);border-radius:6px;padding:2px 0;font-weight:500}
+.pub .year span{display:inline-block;font-size:11px;margin-top:6px;padding:1px 10px;border-radius:10px;background:var(--accent);color:#fff}
+[data-theme="dark"] .pub .year span{color:#10142a}
+.pub h3{font-size:16px;font-weight:600}
+.pub em{font-size:13px;color:var(--muted)}
+.small-btn{display:inline-block;margin-top:10px;padding:4px 14px;border-radius:5px;background:var(--accent);color:#fff;font-size:12px}
+[data-theme="dark"] .small-btn{color:#10142a}
+
+.skills{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:20px}
+.skills .card{margin:0}
+.skills h3{font-size:15px;color:var(--accent);font-weight:600;margin-bottom:10px}
+.skills li{list-style:none;font-size:13.5px;margin-bottom:4px}
+.skills li::before{content:"✓ ";color:var(--accent);font-size:12px}
+
+.proj{display:grid;grid-template-columns:260px 1fr;gap:26px}
+.thumb{border-radius:8px;background:linear-gradient(135deg,var(--accent-soft),var(--card));border:1px solid var(--border);min-height:150px;display:grid;place-items:center;color:var(--accent)}
+.thumb svg{width:64px;height:64px;opacity:.8}
+.proj h3{font-size:17px;font-weight:600}
+.proj .kind{color:var(--accent);font-size:13px;margin-bottom:8px}
+.proj p{font-size:14px;margin-bottom:12px}
+.warn{display:inline-block;font-size:12px;color:#c76a00;border:1px solid #e6a04d;padding:3px 12px;border-radius:5px;margin-right:8px}
+
+.certs{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:22px}
+.certs .card{margin:0}
+.cert-img{height:130px;border-radius:6px;background:var(--accent-soft);border:1px dashed var(--accent);display:grid;place-items:center;color:var(--accent);font-size:13px;margin-bottom:14px}
+.certs h3{font-size:16px;font-weight:600}
+
+.abstract{font-size:14px;text-align:justify;margin-bottom:16px}
+.figure{height:220px;border-radius:8px;background:var(--card);border:1px dashed var(--accent);display:grid;place-items:center;color:var(--accent);margin-top:20px}
+
+footer{text-align:center;color:var(--muted);font-size:12.5px;padding:20px}
+
+@media(max-width:860px){
+  .bar{flex-wrap:wrap;gap:8px 14px}
+  nav{order:3;flex:1 0 100%;justify-content:flex-start}
+  .social{margin-left:auto}
+  .about{grid-template-columns:1fr;gap:30px}
+  .two,.proj{grid-template-columns:1fr}
+  .profiles{grid-template-columns:1fr 1fr}
+  .pub{flex-direction:column;gap:10px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="bar">
+    <span class="logo" id="logo"></span>
+    <button id="theme" aria-label="Toggle theme" title="Toggle light/dark">☀️</button>
+    <nav id="nav"></nav>
+    <div class="social" id="social"></div>
+  </div>
+  <div class="notice" id="notice"></div>
+</header>
+
+<main id="main"></main>
+<footer id="footer"></footer>
+
+<script>
+/* ============ EDIT YOUR CONTENT HERE ============ */
+const DATA = {
+  name: "Your Name",
+  fullName: "Your Full Name",
+  notice: "This website is updated every few months. Last updated: Nov 2026.",
+  tagline: ["M.S. in Computer Science (Country)", "B.Sc. in Computer Science & Engineering (Country)"],
+  location: "City, State",
+  phone: "(+1) 000-000-0000",
+  email: "you@example.com",
+  cv: "#",
+  bio: "Write 3–4 sentences here about who you are, where you studied or work, and the topics you care about. Mention honors, research interests, or what you're currently looking for.",
+  education: [
+    { degree: "M.S. in Computer Science, 2025", school: "Your University, Country" },
+    { degree: "B.Sc. in Computer Science & Engineering, 2021", school: "Your First University, Country" }
+  ],
+  interests: ["Machine learning", "Computer vision", "Secure AI systems", "Distributed systems"],
+  links: {
+    LinkedIn: "https://linkedin.com/",
+    "Google Scholar": "https://scholar.google.com/",
+    ResearchGate: "https://www.researchgate.net/",
+    GitHub: "https://github.com/"
+  },
+  experience: [
+    { org: "Company Name", initials: "CN", role: "Internship – Software Engineer", place: "City, State", dates: "Jun 2025 – Aug 2025",
+      points: ["Describe an achievement with a measurable result.", "Mention the tools and technologies you used.", "Collaborated with a team to ship a feature or system."] },
+    { org: "Your University", initials: "YU", role: "Graduate Research Assistant", place: "Department, University", dates: "Apr 2024 – Mar 2025",
+      points: ["Designed and implemented a method that improved a specific metric.", "Ran large-scale experiments on standard benchmarks.", "Presented findings in weekly lab meetings."] },
+    { org: "Your University", initials: "YU", role: "Graduate Teaching Assistant", place: "Department, University", dates: "Aug 2023 – Mar 2024",
+      points: ["Held office hours and graded assignments for an undergraduate course.", "Developed lab material and answered student questions."] }
+  ],
+  publications: [
+    { year: "2025", type: "Conference", status: "Submitted", title: "Title of Your Most Recent Paper Goes Here", authors: "You, Co-author One, Co-author Two", venue: "Submitted to Venue", url: "#" },
+    { year: "2023", type: "Journal", title: "Title of a Published Journal Article", authors: "Co-author One, You, Co-author Two", venue: "Journal Name (Publisher)", url: "#" }
+  ],
+  skills: {
+    "ML / DL Skills": ["PyTorch", "TensorFlow", "Hugging Face", "Transformers"],
+    "Programming": ["Python", "C/C++", "Java", "JavaScript", "SQL"],
+    "Data Science": ["Pandas", "NumPy", "Matplotlib", "SciPy"],
+    "Web & Cloud": ["AWS", "React", "FastAPI", "Docker", "Git"],
+    "Tools": ["Linux", "HPC", "VS Code", "Jupyter"],
+    "Soft Skills": ["Communication", "Teamwork", "Problem analysis"]
+  },
+  projects: [
+    { title: "Your Flagship Research Project", kind: "Master's Project | Funded by Organization",
+      desc: "Two or three sentences on the problem, your approach, and the headline result. Keep numbers specific.",
+      tags: ["PyTorch", "Deep Learning", "Robustness"], notes: "Code not available", report: "#" },
+    { title: "End-to-End Side Project", kind: "Personal Project",
+      desc: "Describe what you built, the stack, and why it's interesting. Link to the repo and a live demo if you have them.",
+      tags: ["Python", "FastAPI", "React", "Docker"], github: "#" }
+  ],
+  certifications: [
+    { name: "Machine Learning", issuer: "Coursera | Stanford University", date: "July 2021", url: "#" },
+    { name: "Cloud Practitioner", issuer: "AWS Training and Certification", date: "July 2025", url: "#" },
+    { name: "Convolutional Neural Networks", issuer: "Coursera | DeepLearning.AI", date: "October 2021", url: "#" }
+  ],
+  thesis: {
+    heading: "Master's Project Report",
+    title: "Title of Your Thesis or Capstone Project",
+    abstract: "Paste your abstract here. Summarize the problem, why existing approaches fall short, what you propose, and the main results.",
+    report: "#"
+  }
+};
+/* ================================================== */
+
+const ICONS = {
+  LinkedIn:'<path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9.5h4V21H3zM9.5 9.5h3.8v1.6h.1c.5-1 1.8-2 3.7-2 4 0 4.7 2.6 4.7 6V21h-4v-5.1c0-1.2 0-2.8-1.7-2.8s-2 1.3-2 2.7V21h-4z"/>',
+  "Google Scholar":'<path d="M12 3L1 9l11 6 9-4.9V17h2V9L12 3zM5 13.2v4L12 21l7-3.8v-4L12 17l-7-3.8z"/>',
+  ResearchGate:'<path d="M3 3h18v18H3zM8 17h1.7v-3.4h1.3c1.3 0 2.3-.8 2.3-2.2 0-1.4-1-2.2-2.4-2.2H8zm1.7-4.8V9.9h1.2c.6 0 1 .3 1 1.1s-.4 1.2-1 1.2zm5.2 4.9c1.8 0 2.6-1 2.6-2 0-1.2-.9-1.6-1.8-1.9-.6-.2-1-.4-1-.7 0-.3.3-.5.7-.5.5 0 .8.2 1 .4l.7-1c-.4-.4-1-.6-1.7-.6-1.2 0-2.1.7-2.1 1.8 0 1 .8 1.5 1.6 1.8.6.2 1.1.4 1.1.8 0 .4-.3.6-.8.6-.6 0-1-.3-1.3-.7l-.8 1c.5.6 1.2 1 2 1z" fill-rule="evenodd"/>',
+  GitHub:'<path d="M12 .5a11.5 11.5 0 00-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 015.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.2c0 .3.2.7.8.6A11.5 11.5 0 0012 .5z"/>'
+};
+const svg = k => `<svg viewBox="0 0 24 24" aria-hidden="true">${ICONS[k]}</svg>`;
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const D = DATA;
+
+const TABS = [
+  ['about','About'],['experience','Experience'],['publications','Publications'],
+  ['skills','Skills'],['projects','Research & Projects'],['certifications','Certification'],['thesis','Thesis']
+];
+
+const sections = {
+about: `
+  <div class="about">
+    <div class="profile">
+      <div class="avatar"><svg viewBox="0 0 100 100"><circle cx="50" cy="38" r="17" fill="#4660a9" opacity=".75"/><path d="M14 92c4-22 20-30 36-30s32 8 36 30z" fill="#4660a9" opacity=".75"/></svg></div>
+      <h1>${esc(D.fullName)}</h1>
+      ${D.tagline.map(t=>`<div class="meta i">${esc(t)}</div>`).join('')}
+      <div class="meta">📍 ${esc(D.location)}</div>
+      <div class="meta">📞 ${esc(D.phone)}</div>
+      <div class="meta">✉️ ${esc(D.email)}</div>
+      <a class="btn" href="${esc(D.cv)}">Download CV ⬇</a>
+    </div>
+    <div>
+      <h2 class="title">Biography</h2>
+      <p>${esc(D.bio)}</p>
+      <div class="two">
+        <div><h3 class="sub">Education</h3><ul class="dots">${D.education.map(e=>`<li><b>🎓 ${esc(e.degree)}</b><br><span class="sm">${esc(e.school)}</span></li>`).join('')}</ul></div>
+        <div><h3 class="sub">Interests</h3><ul class="dots">${D.interests.map(i=>`<li><b>${esc(i)}</b></li>`).join('')}</ul></div>
+      </div>
+      <h2 class="title">Profiles</h2>
+      <div class="profiles">${Object.entries(D.links).map(([k,u])=>`<a href="${esc(u)}" target="_blank" rel="noopener">${esc(k)}</a>`).join('')}</div>
+    </div>
+  </div>`,
+
+experience: `<h2 class="title">Academic & Professional Experience</h2>` + D.experience.map(e=>`
+  <div class="card exp"><div class="logo-ph">${esc(e.initials)}</div><div>
+    <h3>${esc(e.role)}</h3><div class="sm"><b>${esc(e.org)}</b> · ${esc(e.place)}</div>
+    <span class="pill">${esc(e.dates)}</span>
+    <ul class="dots">${e.points.map(p=>`<li>${esc(p)}</li>`).join('')}</ul></div></div>`).join(''),
+
+publications: `<h2 class="title">Publications</h2>` + D.publications.map(p=>`
+  <div class="card pub"><div class="year"><b>${esc(p.year)}</b><span>${esc(p.type)}</span>${p.status?`<br><span style="background:#fde9b8;color:#8a5a00">${esc(p.status)}</span>`:''}</div>
+  <div><h3>${esc(p.title)}</h3><em>${esc(p.authors)}</em><div class="sm">${esc(p.venue)}</div>
+  <a class="small-btn" href="${esc(p.url)}" target="_blank" rel="noopener">Visit Publication Site ›</a></div></div>`).join(''),
+
+skills: `<h2 class="title">Coding and Software Skills</h2><div class="skills">` +
+  Object.entries(D.skills).map(([k,v])=>`<div class="card"><h3>${esc(k)}</h3><ul>${v.map(s=>`<li>${esc(s)}</li>`).join('')}</ul></div>`).join('') + `</div>`,
+
+projects: `<h2 class="title">Projects</h2>` + D.projects.map(p=>`
+  <div class="card proj"><div class="thumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg></div>
+  <div><h3>${esc(p.title)}</h3><div class="kind">${esc(p.kind)}</div><p>${esc(p.desc)}</p>
+  <div>${p.tags.map(t=>`<span class="tag">${esc(t)}</span>`).join('')}</div>
+  <div style="margin-top:6px">${p.notes?`<span class="warn">⚠ ${esc(p.notes)}</span>`:''}${p.report?`<a class="small-btn" href="${esc(p.report)}">Report</a>`:''}${p.github?`<a class="small-btn" href="${esc(p.github)}" target="_blank" rel="noopener">GitHub</a>`:''}</div></div></div>`).join(''),
+
+certifications: `<h2 class="title">Certifications</h2><div class="certs">` + D.certifications.map(c=>`
+  <div class="card"><div class="cert-img">Certificate image</div><h3>${esc(c.name)}</h3><div class="sm">${esc(c.issuer)}</div><div class="sm">${esc(c.date)}</div>
+  <a class="small-btn" href="${esc(c.url)}" target="_blank" rel="noopener">Verify ↗</a></div>`).join('') + `</div>`,
+
+thesis: `<h2 class="title">${esc(D.thesis.heading)}</h2><h3 class="sub">${esc(D.thesis.title)}</h3>
+  <h4 style="color:var(--accent);font-weight:500;margin-bottom:6px">Abstract</h4><p class="abstract">${esc(D.thesis.abstract)}</p>
+  <a class="small-btn" href="${esc(D.thesis.report)}">Project Report 📄</a><div class="figure">Figure / results image</div>`
+};
+
+/* render */
+document.getElementById('logo').textContent = D.name;
+document.getElementById('notice').textContent = D.notice;
+document.getElementById('footer').textContent = `© ${new Date().getFullYear()} ${D.fullName}`;
+document.getElementById('social').innerHTML = Object.entries(D.links).map(([k,u])=>`<a href="${esc(u)}" target="_blank" rel="noopener" title="${esc(k)}">${svg(k)}</a>`).join('');
+document.getElementById('main').innerHTML = TABS.map(([id])=>`<section id="s-${id}">${sections[id]}</section>`).join('');
+const nav = document.getElementById('nav');
+nav.innerHTML = TABS.map(([id,l])=>`<button data-id="${id}">${l}</button>`).join('');
+
+function show(id){
+  if(!sections[id]) id='about';
+  document.querySelectorAll('section').forEach(s=>s.classList.toggle('active', s.id==='s-'+id));
+  nav.querySelectorAll('button').forEach(b=>b.classList.toggle('active', b.dataset.id===id));
+  window.scrollTo({top:0});
+}
+nav.addEventListener('click', e=>{ const b=e.target.closest('button'); if(b){ location.hash=b.dataset.id; show(b.dataset.id);} });
+window.addEventListener('hashchange', ()=>show(location.hash.slice(1)));
+show(location.hash.slice(1));
+
+/* theme */
+const root=document.documentElement, tbtn=document.getElementById('theme');
+function setTheme(t){ root.dataset.theme=t; tbtn.textContent = t==='dark'?'🌙':'☀️'; try{localStorage.setItem('theme',t)}catch(e){} }
+let saved=null; try{saved=localStorage.getItem('theme')}catch(e){}
+setTheme(saved || (matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'));
+tbtn.addEventListener('click', ()=>setTheme(root.dataset.theme==='dark'?'light':'dark'));
+</script>
+</body>
+</html>
